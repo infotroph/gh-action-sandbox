@@ -10,3 +10,13 @@ jobs:
     - run: echo ${HOME}
     - uses: r-lib/actions/setup-r@v1
     - run: Rscript -e 'Sys.getenv("HOME")'
+    - run: Rscript -e 'scan(file(file.path(Sys.getenv("HOME"), "test.txt")), what="character()")'
+  write-docker:
+    runs-on: ubuntu-latest
+    container: pecan/depends:latest
+    steps:
+    - run: echo "this is a test" >> ${HOME}/test.txt
+    - run: cat ${HOME}/test.txt
+    - run: echo ${HOME}
+    - run: Rscript -e 'Sys.getenv("HOME")'
+    - run: Rscript -e 'scan(file(file.path(Sys.getenv("HOME"), "test.txt")), what="character()")'
