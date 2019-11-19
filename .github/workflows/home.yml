@@ -7,6 +7,9 @@ jobs:
     steps:
     - run: echo "this is a test" >> ${HOME}/test.txt
     - run: cat ${HOME}/test.txt
+    - run: ls
+    - run: echo ${HOME}
+    - run: ls ${HOME}
   read:
     runs-on: ubuntu-latest
     needs: write
