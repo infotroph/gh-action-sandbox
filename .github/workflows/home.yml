@@ -1,0 +1,15 @@
+name: hometest
+on: [push]
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "this is a test" >> ${HOME}/test.txt
+    - run: cat ${HOME}/test.txt
+  read:
+    runs-on: ubuntu-latest
+    needs: write
+    steps:
+    - run: echo "drumroll please"
+    - run: cat ${HOME}/test.txt
