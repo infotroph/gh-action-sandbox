@@ -20,3 +20,9 @@ jobs:
     - run: echo ${HOME}
     - run: Rscript -e 'Sys.getenv("HOME")'
     - run: Rscript -e 'scan(file(file.path(Sys.getenv("HOME"), "test.txt")), what="character()")'
+  cleantree:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run: echo "oooops, careful there" >> home.yml
+    - uses: infotroph/tree-is-clean@master
