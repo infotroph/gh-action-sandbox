@@ -24,5 +24,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - run: echo "oooops, careful there" >> home.yml
+    - run: echo "oooops, careful there" >> README.md
     - uses: infotroph/tree-is-clean@master
