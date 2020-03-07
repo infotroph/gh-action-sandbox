@@ -8,6 +8,7 @@ jobs:
     steps:
     - run: |
       echo there will be a pipe here once I fix the syntax
+    - run: echo wtf
 
   andtest:
     runs-on: ubuntu-latest
