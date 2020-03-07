@@ -1,11 +1,14 @@
 name: pipe-vs-and
 on: push
+
 jobs:
+
   pipetest:
     runs-on: ubuntu-latest
     steps:
     - run: |
       echo there will be a pipe here once I fix the syntax
+
   andtest:
     runs-on: ubuntu-latest
     steps:
