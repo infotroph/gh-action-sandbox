@@ -1,0 +1,13 @@
+on:push
+
+jobs:
+  pipetest:
+    runs-on: ubuntu-latest
+    steps:
+      run: |
+        ehco this is a typo
+        echo this is ok
+  andtest:
+    runs-on: ubuntu-latest
+    steps:
+      run: ehco this is a typo && echo this is ok
