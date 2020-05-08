@@ -3,16 +3,16 @@ name: create-cache
 on: push
 
 jobs:
-  runs-on: ubuntu-latest
-  steps:
-  - run: mkdir -p the_cache
-  - uses: actions/cache@v1
-    with:
-      key: jobonecache-${{github.ref}}-${{ github.sha }}
-      path: the_cache
-      restore-keys: |
-          jobonecache-${{github.ref}}-
-          jobonecache-
-  - run: echo 'this is job one'
-  - run: echo 'hello from job one' > the_cache/msg.txt
-
+  create-cache:
+    runs-on: ubuntu-latest
+    steps:
+    - run: mkdir -p the_cache
+    - uses: actions/cache@v1
+      with:
+        key: jobonecache-${{github.ref}}-${{ github.sha }}
+        path: the_cache
+        restore-keys: |
+            jobonecache-${{github.ref}}-
+            jobonecache-
+    - run: echo 'this is job one'
+    - run: echo 'hello from job one' > the_cache/msg.txt
