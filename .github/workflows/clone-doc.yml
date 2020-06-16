@@ -15,7 +15,8 @@ jobs:
         repository: ${{ github.repository_owner }}/pecan-documentation
         path: pecan-documentation
     - run: |
-        echo "GITHUB_REF is $GITHUB_REF, GITHUB_SHA is $GITHUB_SHA"
+        git config --global user.email "pecanproj@gmail.com"
+        git config --global user.name "GitHub Documentation Robot"
         export VERSION=${GITHUB_REF##*/}_test
         cd pecan-documentation && mkdir -p $VERSION
         rsync -a --delete ../_book/ $VERSION
