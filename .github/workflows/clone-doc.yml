@@ -1,0 +1,24 @@
+name: clone-doc
+on: push
+
+jobs:
+
+  pipetest:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "GITHUB_REF is $GITHUB_REF, GITHUB_SHA is $GITHUB_SHA, GITHUB_ACTOR is $GITHUB_ACTOR"
+    - run: echo "github.repository_owner is ${{ github.repository_owner }}"
+    - run: mkdir _book && touch _book/foo.html
+    - name: Checkout documentation repo
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ github.repository_owner }}/pecan-documentation
+        path: pecan-documentation
+    - run: |
+        echo "GITHUB_REF is $GITHUB_REF, GITHUB_SHA is $GITHUB_SHA"
+        export VERSION=${GITHUB_REF##*/}_test
+        cd pecan-documentation && mkdir -p $VERSION
+        rsync -a --delete ../_book/ $VERSION
+        git add --all *
+        git commit -m "Build book from pecan revision $GITHUB_SHA" || true
+        git push -q origin master
