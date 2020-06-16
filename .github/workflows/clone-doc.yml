@@ -23,4 +23,4 @@ jobs:
         rsync -a --delete ../_book/ $VERSION
         git add --all *
         git commit -m "Build book from pecan revision $GITHUB_SHA" || true
-        git push -q origin master
+        git push -v origin master
