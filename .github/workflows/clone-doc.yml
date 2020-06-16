@@ -15,11 +15,11 @@ jobs:
         repository: ${{ github.repository_owner }}/pecan-documentation
         path: pecan-documentation
     - run: |
+        export VERSION=${GITHUB_REF##*/}_test
+        cd pecan-documentation && mkdir -p $VERSION
         git config --global user.email "pecanproj@gmail.com"
         git config --global user.name "GitHub Documentation Robot"
         git remote set-url origin https://${{ secrets.DOC_REPO_TOKEN }}@github.com/${{ github.repository_owner }}/pecan-documentation.git
-        export VERSION=${GITHUB_REF##*/}_test
-        cd pecan-documentation && mkdir -p $VERSION
         rsync -a --delete ../_book/ $VERSION
         git add --all *
         git commit -m "Build book from pecan revision $GITHUB_SHA" || true
