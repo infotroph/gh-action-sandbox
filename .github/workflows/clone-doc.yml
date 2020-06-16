@@ -6,8 +6,6 @@ jobs:
   pushdoc:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "GITHUB_REF is $GITHUB_REF, GITHUB_SHA is $GITHUB_SHA, GITHUB_ACTOR is $GITHUB_ACTOR"
-    - run: echo "github.repository_owner is ${{ github.repository_owner }}"
     - run: mkdir _book && touch _book/foo.html
     - name: Checkout documentation repo
       uses: actions/checkout@v2
@@ -20,8 +18,7 @@ jobs:
         cd pecan-documentation && mkdir -p $VERSION
         git config --global user.email "pecanproj@gmail.com"
         git config --global user.name "GitHub Documentation Robot"
-        # git remote set-url origin https://${{ github.repository_owner }}:${{ secrets.DOC_REPO_TOKEN }}@github.com/${{ github.repository_owner }}/pecan-documentation.git
         rsync -a --delete ../_book/ $VERSION
         git add --all *
         git commit -m "Build book from pecan revision $GITHUB_SHA" || true
-        git push -v origin master
+        git push -q origin master
