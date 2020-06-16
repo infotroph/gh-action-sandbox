@@ -3,7 +3,7 @@ on: push
 
 jobs:
 
-  pipetest:
+  pushdocs:
     runs-on: ubuntu-latest
     steps:
     - run: echo "GITHUB_REF is $GITHUB_REF, GITHUB_SHA is $GITHUB_SHA, GITHUB_ACTOR is $GITHUB_ACTOR"
